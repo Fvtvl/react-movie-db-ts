@@ -1,8 +1,12 @@
 import React from 'react';
 import { Wrapper, Content } from './Grid.styles';
-import PropTypes from 'prop-types';
 
-const Grid = React.memo(({ header, children }) => {
+type Props = {
+  header: string;
+  children: any;
+};
+
+const Grid: React.FC<Props> = React.memo(({ header, children }) => {
   return (
     <Wrapper>
       <h1>{header}</h1>
@@ -10,9 +14,5 @@ const Grid = React.memo(({ header, children }) => {
     </Wrapper>
   );
 });
-
-Grid.propTypes = {
-  header: PropTypes.string,
-};
 
 export default Grid;

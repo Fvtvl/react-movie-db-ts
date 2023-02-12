@@ -9,7 +9,7 @@ import Button from './Button';
 import Spinner from './Spinner';
 
 //Hook
-import { useHomeFetch } from '../Hooks/useHomeFetch';
+import { useHomeFetch } from '../hooks/useHomeFetch';
 
 //Config
 import { POSTER_SIZE, BACKDROP_SIZE, IMAGE_BASE_URL } from '../config';
@@ -17,7 +17,7 @@ import { POSTER_SIZE, BACKDROP_SIZE, IMAGE_BASE_URL } from '../config';
 //Image
 import NoImage from '../images/no_image.jpg';
 
-const Home = () => {
+const Home: React.FC = () => {
   const { state, loading, error, setSearchTerm, searchTerm, setIsLoadingMore } =
     useHomeFetch();
 

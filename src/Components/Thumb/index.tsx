@@ -1,9 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Image } from './Thumb.styles';
-import PropTypes from 'prop-types';
 
-const Thumb = React.memo(({ image, movieId, clickable }) => {
+type Props = {
+  image: string;
+  movieId: number;
+  clickable: boolean;
+};
+
+const Thumb: React.FC<Props> = React.memo(({ image, movieId, clickable }) => {
   return (
     <div>
       {clickable ? (
@@ -16,9 +21,5 @@ const Thumb = React.memo(({ image, movieId, clickable }) => {
     </div>
   );
 });
-Thumb.propTypes = {
-  image: PropTypes.string,
-  movieId: PropTypes.number,
-  clickable: PropTypes.bool,
-};
+
 export default Thumb;

@@ -6,7 +6,7 @@ import TMDBLogo from '../../images/tmdb_logo.svg';
 
 import { Wrapper, Content, LogoImg, TMDBLogoImg } from './Header.style';
 
-const Header = React.memo(() => {
+const Header: React.FC = React.memo(() => {
   return (
     <Wrapper>
       <Content>

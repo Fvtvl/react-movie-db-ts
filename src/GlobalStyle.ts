@@ -1,10 +1,11 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
 
     :root {
         --maxWidth: 1280px;
         --white: #fff;
+        --ashGrey: #a9a9a9;
         --lightGrey: #eee;
         --medGrey: #353535;
         --darkGrey: #1c1c1c;
@@ -40,4 +41,4 @@ export const GlobalStyle = createGlobalStyle`
             color: var(--white);
         }
     }
-`
+`;
