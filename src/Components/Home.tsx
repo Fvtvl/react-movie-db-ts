@@ -9,7 +9,7 @@ import Button from './Button';
 import Spinner from './Spinner';
 
 //Hook
-import { useHomeFetch } from '../hooks/useHomeFetch';
+import { useHomeFetch } from '../Hooks/useHomeFetch';
 
 //Config
 import { POSTER_SIZE, BACKDROP_SIZE, IMAGE_BASE_URL } from '../config';

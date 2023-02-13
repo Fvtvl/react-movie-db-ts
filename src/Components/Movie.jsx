@@ -8,7 +8,7 @@ import BreadCrumb from './BreadCrumb';
 import MovieInfo from './MovieInfo';
 import Grid from './Grid';
 //hook
-import { useMovieFetch } from '../hooks/useMovieFetch';
+import { useMovieFetch } from '../Hooks/useMovieFetch';
 //image
 import NoImage from '../images/no_image.jpg';
 import MovieInfoBar from './MovieInfoBar';
