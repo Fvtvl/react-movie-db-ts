@@ -14,10 +14,10 @@ import NoImage from '../images/no_image.jpg';
 import MovieInfoBar from './MovieInfoBar';
 import Actor from './Actor';
 
-const Movie = () => {
+const Movie: React.FC = () => {
   const { movieId } = useParams();
 
-  const { state: movie, loading, error } = useMovieFetch(movieId);
+  const { state: movie, loading, error } = useMovieFetch(String(movieId));
 
   if (loading) return <Spinner />;
   if (error) return <div>Something went wrong...</div>;

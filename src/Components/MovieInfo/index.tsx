@@ -5,9 +5,13 @@ import Thumb from '../Thumb';
 import { IMAGE_BASE_URL, POSTER_SIZE } from '../../config';
 import NoImage from '../../images/no_image.jpg';
 import { Content, Wrapper, Text } from './MovieInfo.styles';
-import PropTypes from 'prop-types';
+import { MovieState } from '../../Hooks/useMovieFetch';
 
-const MovieInfo = React.memo(({ movie }) => {
+type Props = {
+  movie: MovieState;
+};
+
+const MovieInfo: React.FC<Props> = React.memo(({ movie }) => {
   return (
     <Wrapper backdrop={movie.backdrop_path}>
       <Content>
@@ -18,7 +22,6 @@ const MovieInfo = React.memo(({ movie }) => {
               : NoImage
           }
           clickable={false}
-          alt="movie-thumb"
         />
         <Text>
           <h1>{movie.title}</h1>
@@ -42,7 +45,5 @@ const MovieInfo = React.memo(({ movie }) => {
     </Wrapper>
   );
 });
-MovieInfo.propTypes = {
-  movie: PropTypes.object,
-};
+
 export default MovieInfo;

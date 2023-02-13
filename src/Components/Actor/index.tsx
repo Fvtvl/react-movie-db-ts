@@ -1,8 +1,13 @@
 import React from 'react';
 import { Wrapper, Image } from './Actor.styles';
-import PropTypes from 'prop-types';
 
-const Actor = React.memo(({ name, character, imageUrl }) => {
+type Props = {
+  name: string;
+  character: string;
+  imageUrl: string;
+};
+
+const Actor: React.FC<Props> = React.memo(({ name, character, imageUrl }) => {
   return (
     <Wrapper>
       <Image src={imageUrl} alt="actor-thumb" />
@@ -12,9 +17,4 @@ const Actor = React.memo(({ name, character, imageUrl }) => {
   );
 });
 
-Actor.propTypes = {
-  name: PropTypes.string,
-  character: PropTypes.string,
-  imageUrl: PropTypes.string,
-};
 export default Actor;
