@@ -15,13 +15,13 @@ export const Context = createContext<
 
 const UserProvider: React.FC<Props> = ({ children }) => {
   const [state, setState] = useState<User | undefined>(
-    JSON.parse(sessionStorage.getItem('user') || '{}')
+    JSON.parse(sessionStorage.getItem('user') || 'null')
   );
   console.log('UserProvider  state', state);
 
   useEffect(() => {
-    sessionStorage.setItem('user', JSON.stringify(state || {}));
-    if (state === undefined) sessionStorage.removeItem('user');
+    sessionStorage.setItem('user', JSON.stringify(state || null));
+    if (!state) sessionStorage.removeItem('user');
   }, [state]);
 
   return (

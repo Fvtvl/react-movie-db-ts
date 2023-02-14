@@ -1,17 +1,35 @@
-import React from 'react';
+import React, { useContext, useState, FC } from 'react';
 //component
 import Thumb from '../Thumb';
+import Rate from '../Rate';
 //config
 import { IMAGE_BASE_URL, POSTER_SIZE } from '../../config';
 import NoImage from '../../images/no_image.jpg';
 import { Content, Wrapper, Text } from './MovieInfo.styles';
 import { MovieState } from '../../Hooks/useMovieFetch';
+import API from '../../API';
+
+import { Context } from '../../contex';
 
 type Props = {
   movie: MovieState;
 };
 
-const MovieInfo: React.FC<Props> = React.memo(({ movie }) => {
+const MovieInfo: FC<Props> = React.memo(({ movie }) => {
+  const [user] = useContext(Context);
+  const [vote, setVote] = useState<number>();
+
+  const handleRating = async (value: number) => {
+    if (user?.sessionId) {
+      const rate = await API.rateMovie(
+        user.sessionId,
+        movie.id,
+        value.toString()
+      );
+      setVote(value);
+      console.log(rate);
+    }
+  };
   return (
     <Wrapper backdrop={movie.backdrop_path}>
       <Content>
@@ -40,6 +58,13 @@ const MovieInfo: React.FC<Props> = React.memo(({ movie }) => {
               ))}
             </div>
           </div>
+          {user && (
+            <div>
+              <p>Rate</p>
+              <Rate callback={handleRating} />
+              {vote && <p>Your rate is {vote}, thx</p>}
+            </div>
+          )}
         </Text>
       </Content>
     </Wrapper>

@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import API from '../API';
 
@@ -9,6 +9,7 @@ import { Wrapper } from './Login.style';
 //context
 
 import { Context } from '../contex';
+import { handleSignUp } from '../helpers';
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -28,7 +29,6 @@ const Login = () => {
         username,
         password
       );
-      console.log(sessionId);
       setUser({ sessionId: sessionId.session_id, username });
       navigate('/');
     } catch (error) {
@@ -43,10 +43,6 @@ const Login = () => {
     if (name === 'username') setUsername(value);
     if (name === 'password') setPassword(value);
   };
-
-  const handleSignUp = useCallback(() => {
-    window.open('https://www.themoviedb.org/signup', '_blank');
-  }, []);
 
   return (
     <Wrapper>

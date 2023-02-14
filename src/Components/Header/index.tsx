@@ -13,9 +13,9 @@ import {
   ExitImg,
   Login,
   UserLog,
-  Box,
 } from './Header.style';
 import { Context } from '../../contex';
+import { handleSignUp } from '../../helpers';
 
 const Header: React.FC = () => {
   const [user, setUser] = useContext(Context);
@@ -30,16 +30,19 @@ const Header: React.FC = () => {
           <LogoImg src={RMDBLogo} alt="rmdb-logo" />
         </Link>
         {user ? (
-          <Box>
+          <>
             <UserLog>{user.username}</UserLog>
             <ExitImg onClick={handleLogout}>
               <BiExit />
             </ExitImg>
-          </Box>
+          </>
         ) : (
-          <Link to="/login">
-            <Login>Log In</Login>
-          </Link>
+          <>
+            <Link to="/login">
+              <Login>Log In</Login>
+            </Link>
+            <Login onClick={() => handleSignUp()}>Sign Up</Login>
+          </>
         )}
         <TMDBLogoImg src={TMDBLogo} alt="tmdb-logo" />
       </Content>
