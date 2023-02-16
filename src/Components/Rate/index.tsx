@@ -4,10 +4,9 @@ import { ButtonRate, Content } from './Rate.style';
 
 type Props = {
   callback: (value: number) => void;
-  rated?: number;
 };
 
-const Rate: FC<Props> = ({ callback, rated }) => {
+const Rate: FC<Props> = React.memo(({ callback }) => {
   const [value, setValue] = useState(5);
 
   const handleValueChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -31,6 +30,6 @@ const Rate: FC<Props> = ({ callback, rated }) => {
       </Content>
     </>
   );
-};
+});
 
 export default Rate;

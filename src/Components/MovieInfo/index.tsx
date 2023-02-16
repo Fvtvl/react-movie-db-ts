@@ -61,7 +61,7 @@ const MovieInfo: FC<Props> = React.memo(({ movie, rated }) => {
               ))}
             </div>
           </div>
-          {user && <Rate callback={handleRating} rated={rated} />}
+          {user && <Rate callback={handleRating} />}
           {rated && (
             <div className="personal-rate">
               <h3>Your personal rate:</h3>
