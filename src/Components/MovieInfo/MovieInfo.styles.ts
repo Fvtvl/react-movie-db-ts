@@ -47,6 +47,16 @@ export const Text = styled.div`
     justify-content: flex-start;
   }
 
+  .personal-rate {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+
+    h3 {
+      margin-right: 10px;
+    }
+  }
+
   .score {
     display: flex;
     align-items: center;

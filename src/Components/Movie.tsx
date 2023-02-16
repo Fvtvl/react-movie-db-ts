@@ -13,18 +13,21 @@ import { useMovieFetch } from '../Hooks/useMovieFetch';
 import NoImage from '../images/no_image.jpg';
 import MovieInfoBar from './MovieInfoBar';
 import Actor from './Actor';
+import { useRatedFetch } from '../Hooks/useRatedFetch';
 
 const Movie: React.FC = () => {
   const { movieId } = useParams();
 
   const { state: movie, loading, error } = useMovieFetch(String(movieId));
+  const { rating } = useRatedFetch(String(movieId));
 
   if (loading) return <Spinner />;
   if (error) return <div>Something went wrong...</div>;
   return (
     <>
       <BreadCrumb movieTitle={movie.original_title} />
-      <MovieInfo movie={movie} />
+      <MovieInfo movie={movie} rated={rating?.rated.value} />
+
       <MovieInfoBar
         time={movie.runtime}
         budget={movie.budget}

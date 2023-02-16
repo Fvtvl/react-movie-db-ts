@@ -1,4 +1,4 @@
-import React, { useContext, useState, FC } from 'react';
+import React, { useContext, FC } from 'react';
 //component
 import Thumb from '../Thumb';
 import Rate from '../Rate';
@@ -13,11 +13,11 @@ import { Context } from '../../contex';
 
 type Props = {
   movie: MovieState;
+  rated?: number;
 };
 
-const MovieInfo: FC<Props> = React.memo(({ movie }) => {
-  const [user] = useContext(Context);
-  const [vote, setVote] = useState<number>();
+const MovieInfo: FC<Props> = React.memo(({ movie, rated }) => {
+  const [user, setUser] = useContext(Context);
 
   const handleRating = async (value: number) => {
     if (user?.sessionId) {
@@ -26,10 +26,13 @@ const MovieInfo: FC<Props> = React.memo(({ movie }) => {
         movie.id,
         value.toString()
       );
-      setVote(value);
-      console.log(rate);
+      setUser({
+        ...user,
+        rating: value,
+      });
     }
   };
+
   return (
     <Wrapper backdrop={movie.backdrop_path}>
       <Content>
@@ -58,11 +61,11 @@ const MovieInfo: FC<Props> = React.memo(({ movie }) => {
               ))}
             </div>
           </div>
-          {user && (
-            <div>
-              <p>Rate</p>
-              <Rate callback={handleRating} />
-              {vote && <p>Your rate is {vote}, thx</p>}
+          {user && <Rate callback={handleRating} rated={rated} />}
+          {rated && (
+            <div className="personal-rate">
+              <h3>Your personal rate:</h3>
+              <div className="score">{rated}</div>
             </div>
           )}
         </Text>

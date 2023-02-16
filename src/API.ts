@@ -59,6 +59,16 @@ export type Credits = {
   crew: Crew[];
 };
 
+export type Rating = {
+  id: number;
+  favorite: boolean;
+  rated: Rated;
+  watchlist: boolean;
+};
+export type Rated = {
+  value: number;
+};
+
 const apiSettings = {
   fetchMovies: async (searchTerm: string, page: number): Promise<Movies> => {
     const endpoint: string = searchTerm
@@ -118,6 +128,21 @@ const apiSettings = {
     ).json();
 
     return rating;
+  },
+  isMovieRated: async (movieId: string, sessionId: string): Promise<Rating> => {
+    const endpoint: string = `${API_URL}/movie/${movieId}/account_states?api_key=${API_KEY}&session_id=${sessionId}`;
+    return await (await fetch(endpoint)).json();
+  },
+  accountDetails: async (sessionId: string) => {
+    const endpoint: string = `${API_URL}account?api_key=${API_KEY}&session_id=${sessionId}`;
+    const details = await (await fetch(endpoint)).json();
+    return details.id;
+  },
+
+  getAllRatingMovies: async (accountId: number, sessionId: string) => {
+    const endpoint: string = `${API_URL}account/${accountId}/rated/movies?api_key=${API_KEY}&language=en-US&session_id=${sessionId}&sort_by=created_at.asc&page=1`;
+    const rate = await (await fetch(endpoint)).json();
+    return rate;
   },
 };
 

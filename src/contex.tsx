@@ -3,6 +3,8 @@ import React, { createContext, useState, useEffect } from 'react';
 type User = {
   sessionId?: string;
   username?: string;
+  accountId?: number;
+  rating?: number;
 };
 
 type Props = {
@@ -17,7 +19,6 @@ const UserProvider: React.FC<Props> = ({ children }) => {
   const [state, setState] = useState<User | undefined>(
     JSON.parse(sessionStorage.getItem('user') || 'null')
   );
-  console.log('UserProvider  state', state);
 
   useEffect(() => {
     sessionStorage.setItem('user', JSON.stringify(state || null));

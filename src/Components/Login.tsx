@@ -29,7 +29,8 @@ const Login = () => {
         username,
         password
       );
-      setUser({ sessionId: sessionId.session_id, username });
+      const accountId = await API.accountDetails(sessionId.session_id);
+      setUser({ sessionId: sessionId.session_id, username, accountId });
       navigate('/');
     } catch (error) {
       setError(true);

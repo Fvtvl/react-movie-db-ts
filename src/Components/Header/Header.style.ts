@@ -38,6 +38,7 @@ export const TMDBLogoImg = styled.img`
 export const Login = styled.div`
   font-size: 20px;
   font-weight: bold;
+  cursor: pointer;
 
   @media screen and (max-width: 500px) {
     font-size: 13px;
